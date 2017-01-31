@@ -68,6 +68,10 @@ public abstract class NetworkParameters {
     public static final String PAYMENT_PROTOCOL_ID_UNIT_TESTS = "unittest";
     public static final String PAYMENT_PROTOCOL_ID_REGTEST = "regtest";
 
+
+    public static final String PAYMENT_PROTOCOL_ID_BC2TEST = "bc2";
+
+
     // TODO: Seed nodes should be here as well.
 
     protected Block genesisBlock;
@@ -192,6 +196,8 @@ public abstract class NetworkParameters {
         return RegTestParams.get();
     }
 
+    public static NetworkParameters BC2Net() { return BC2NetParams.get();}
+
     /**
      * A Java package style string acting as unique ID for these parameters
      */
@@ -218,6 +224,8 @@ public abstract class NetworkParameters {
     public static NetworkParameters fromID(String id) {
         if (id.equals(ID_MAINNET)) {
             return MainNetParams.get();
+        } else if (id.equals(ID_BC2TEST)){  //ADDED for bc2 network parameters
+            return BC2NetParams.get();
         } else if (id.equals(ID_TESTNET)) {
             return TestNet3Params.get();
         } else if (id.equals(ID_UNITTESTNET)) {
@@ -234,7 +242,9 @@ public abstract class NetworkParameters {
     public static NetworkParameters fromPmtProtocolID(String pmtProtocolId) {
         if (pmtProtocolId.equals(PAYMENT_PROTOCOL_ID_MAINNET)) {
             return MainNetParams.get();
-        } else if (pmtProtocolId.equals(PAYMENT_PROTOCOL_ID_TESTNET)) {
+        } else if (pmtProtocolId.equals(PAYMENT_PROTOCOL_ID_BC2TEST)) { //added for BC2 Network
+            return BC2NetParams.get();
+        }else if (pmtProtocolId.equals(PAYMENT_PROTOCOL_ID_TESTNET)) {
             return TestNet3Params.get();
         } else if (pmtProtocolId.equals(PAYMENT_PROTOCOL_ID_UNIT_TESTS)) {
             return UnitTestParams.get();
